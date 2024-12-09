@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="icon" type="image/x-icon" href="Recipes R Us.jpg">
+    <link rel="stylesheet" href="/style.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Karma:wght@600;700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        .name {
+            display:flex;
+            width:100%;
+            box-sizing:border-box;
+        }
+
+        #message, #email, #fname, #lname, #submitBtn {
+            margin:auto;
+            padding: 10px 10px;
+            font-size:20px;
+        }
+
+        #fname, #lname {
+            width:50%;
+        }
+
+        #message {
+            height:250px;
+            resize: none;
+        }
+
+        #message, #email {
+            box-sizing: border-box;
+        }
+
+        .otherTxt, #submitBtn, #message, #email {
+            width:100%;
+        }
+
+        .formContainer {
+            width:70%;
+            margin:auto;
+            padding:15px 15px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
+        }  
+        
+        .text {
+            margin:auto;
+            width:70%;
+            text-align: center;
+            font-size:25px;
+            padding:10px 10px;
+        }
+
+        h2 {
+            color: #e3735e;
+            font-size: 30px;
+            margin-bottom: 0;
+        }
+
+        hr {
+            width:70%;
+        }
+
+        .contactContainer {
+            display:flex;
+            width:70%;
+            margin:auto;
+            flex-wrap:wrap;
+        }
+        
+        .contact, .phone, .socialMedia {
+            display:block;
+            margin:auto;
+            padding-left: 10px;
+            padding-right:10px;
+            padding-top:10px;
+            padding-bottom: 10px;
+            height:138px;
+            box-sizing: border-box;
+        }
+
+        b {
+            font-weight:600;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+        } 
+
+        .contact {
+            height:138px;
+            box-sizing: border-box;
+        }
+
+        @media screen and (max-width: 575px) {
+            .contact, .phone, .socialMedia {
+                width:280px;
+                box-sizing: border-box;
+                padding-top:0px;
+                padding-bottom: 0px;
+                height:auto;
+                margin-bottom:19.5px;
+            }
+
+            .contact {
+                margin-top:19.5px;
+            }
+        }
+
+        @media screen and (max-width: 450px) {
+            .contactContainer, .formContainer, hr, .text {
+                width:85%;
+            }
+        }
+    </style>
+    <script
+        src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous">
+    </script>
+</head>
+<body>
+    <div class="header"> 
+        <div class = navBar id='navBar'>
+            <div class="nav-left">
+                <a href='homepage.html'>Home</a>
+                <a href='about.html'>About Us</a>
+                <a href='search.html'>Recipe Search</a>
+                <a href='subscriptions.html'>Subscribe</a>
+                <a href='contact.html' class='active'>Contact Us</a>
+                <a href='javascript:void(0);' class='icon' onclick='goHam()'>
+                <i class='fa fa-bars'></i></a>                
+            </div>
+            <div class="nav-right">
+                <a id="logout" href="logout.html">Log Out</a>
+                <a id="login" href="login.html">Log In</a>
+                <a id="signup" href="signup.html">Sign Up</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(() => {
+            if (!sessionStorage.getItem("Session")) {
+                $("#login").toggle();
+                $("#signup").toggle();
+            } else {
+                $("#logout").toggle();
+            }
+        });
+
+        function goHam() {
+            var x = document.getElementById("navBar");
+            if (x.className === "navBar") {
+                x.className += " responsive";
+            } else {
+                x.className = "navBar";
+            }
+        }
+    </script>
+
+    <div class = "title">
+        <h1 style="text-align:center;">Contact Us</h1>
+        <h2 style="text-align:center;">Feedback Form</h2>
+        <div class = "text">
+            Please feel free to leave a message for our team.<br/>
+            We would love to hear your thoughts and we appreciate any feedback!
+        </div><br>
+    </div>
+    
+    <div class ="formContainer">
+    <form name="myForm" method="get" onsubmit="return validate()">
+
+        <div class = 'name'>
+            <input type ='text' id='fname' name='fname' placeholder='first name' required>
+
+            <input type ='text' id='lname' name='lname' placeholder='last name' required>
+        </div>
+
+        <div class="otherTxt">
+            <input type ='text' id='email' name='email' placeholder='email' required><br>
+            <textarea id='message' name='message' placeholder='message...' required></textarea>
+        </div>
+
+        <input type='submit' value='Send' id="submitBtn">
+    </form>
+    </div>
+    <br>
+    <hr>
+
+    <div class="contactContainer">
+        <div class="contact">
+            <b>Mailing Address</b><br>
+            MEDF-4202005<br>
+            c/o Tufts University Mail Services<br>
+            389 Boston Avenue<br>
+            Medford, MA 02155
+        </div>
+        <div class="phone">
+            <div class="email"><b>Email Address</b><br>contact@recipesrus.com</div><br>
+            <div class="number"><b>Phone Number</b><br>+1 (617) 627-5000</div>
+        </div>
+
+        <div class="socialMedia">
+            <div class="socials"><b>Instagram</b><br>@recipesrus.ig</div><br>
+            <div class="socials"><b>Twitter</b><br>@recipesrus.twitter</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2024 Recipes R Us by domainhub.domains</p>
+    </div>
+    <!-- need to still include a footer!! -->
+
+    <script>
+        function validate() {
+            var emailCheck = document.myForm.email.value;
+            
+            if(emailCheck.includes("@") && emailCheck.includes(".")) {
+                return true;
+            } else {
+                alert("Please enter a valid email");
+                return false;
+            }
+        }
+    </script>
+    
+    
+</body>
+</html>

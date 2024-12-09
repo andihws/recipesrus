@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="icon" type="image/x-icon" href="Recipes R Us.jpg">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300" />
+    <script
+        src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous">
+    </script>
+    <style>
+        .login-page {
+            width: 360px;
+            padding: 8% 0 0;
+            margin: auto;
+        }
+
+        .form {
+            position: relative;
+            z-index: 1;
+            background: #FFFFFF;
+            max-width: 360px;
+            margin: 0 auto 100px;
+            border-radius: 20px;
+            padding: 45px;
+            text-align: center;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        }
+
+        .form input {
+            outline: 0;
+            background: #f2f2f2;
+            width: 100%;
+            border: 0;
+            margin: 0 0 15px;
+            padding: 15px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .form button {
+            text-transform: uppercase;
+            outline: 0;
+            background: #e3735e;
+            border-radius: 20px;
+            width: 100%;
+            border: 0;
+            padding: 15px;
+            color: #FFFFFF;
+            font-size: 14px;
+            transition: all 0.3 ease;
+            cursor: pointer;
+        }
+
+        .form button:hover,
+        .form button:active,
+        .form button:focus {
+            background: #a84432;
+        }
+
+        .form .message {
+            margin: 15px 0 0;
+            color: #b3b3b3;
+            font-size: 12px;
+        }
+
+        .form .message a {
+            color: #e3735e;
+            text-decoration: none;
+        }
+
+        body {
+            background: #FEBB75;
+            font-family: "Montserrat";
+        }
+    </style>
+    <script>
+        function validate(event) {
+            event.preventDefault();
+            const email = $("#email").val();
+            const password = $("#password").val();
+            fetch("/validate-login", {
+                method: "POST",
+                body: JSON.stringify({
+                    email,
+                    password, 
+                }),
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            })
+            .then (async (result) => {
+                if (result.status == 200) {
+                    const session = await result.json();
+                    sessionStorage.setItem("Session", JSON.stringify(session));
+                    window.location.href = "/";
+                } else {
+                    alert("Email or Password Incorrect");
+                }
+                
+          
+            })
+        }
+    </script>
+</head>
+
+<body>
+    <div class="login-page">
+        <div class="form">
+            <form class="login-form" method="get" onsubmit="validate(event)">
+                <div>
+                    <input type="text" id="email" placeholder="Email" required/>
+                </div>
+                <div>
+                    <input type="password" id="password" placeholder="Password" required/>
+                </div>
+                <div>
+                    <button type="submit">Login</button>
+                </div>
+                <p class="message">Not registered? <a href="./signup.html">Create an account</a></p>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
